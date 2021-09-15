@@ -19,8 +19,8 @@ public class UserDaoImpl implements UserDao {
     @Override
     public boolean saveUser(User user) {
         try {
-            redisTemplate.opsForHash().put(KEY, user.getId().toString(), user);
-            return true;
+            return redisTemplate.opsForHash().putIfAbsent(KEY, user.getId().toString(), user);
+
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -55,7 +55,10 @@ public class UserDaoImpl implements UserDao {
     @Override
     public boolean updateUser(Long id, User user) {
         try {
-            redisTemplate.opsForHash().put(KEY, id, user);
+            if(id != user.getId()){
+                return false;
+            }
+            redisTemplate.opsForHash().put(KEY, id.toString(), user);
             return true;
         } catch (Exception e) {
             e.printStackTrace();

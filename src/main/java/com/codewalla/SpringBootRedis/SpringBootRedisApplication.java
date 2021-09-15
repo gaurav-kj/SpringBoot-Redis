@@ -2,6 +2,7 @@ package com.codewalla.SpringBootRedis;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import com.codewalla.SpringBootRedis.config.RedisConfig;
 import org.springframework.cache.annotation.EnableCaching;
 
 @SpringBootApplication

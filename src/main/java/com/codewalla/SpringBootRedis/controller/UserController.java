@@ -22,7 +22,7 @@ public class UserController {
         if(result)
             return ResponseEntity.ok("User Created Successfully!!");
         else
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            return new ResponseEntity<String>("user already exist",HttpStatus.BAD_REQUEST);
     }
 
     @GetMapping("/user")
